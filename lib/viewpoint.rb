@@ -107,7 +107,7 @@ module Viewpoint
 
       # Set the http driver that the SOAP back-end will use.
       # @param [Symbol] driver The HTTP driver.  Available drivers:
-      #   :curb, :net_http, :http_client(Default)
+      #   :curb, :net_http, :http_client(Default), :session_http_client
       def self.set_http_driver(driver)
         Handsoap.http_driver = driver
       end

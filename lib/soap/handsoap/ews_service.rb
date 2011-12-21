@@ -19,7 +19,12 @@
 require 'handsoap'
 require 'soap/handsoap/builder'
 require 'soap/handsoap/parser'
+require 'soap/handsoap/session_http_client_driver'
 
+#Register new driver
+Handsoap::Http.drivers[:session_http_client] = Viewpoint::EWS::SOAP::SessionHttpClientDriver
+
+#Default
 Handsoap.http_driver = :http_client
 
 module Viewpoint
