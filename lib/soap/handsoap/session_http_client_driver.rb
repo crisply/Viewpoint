@@ -16,6 +16,7 @@ module Viewpoint
           load!
           @@http_client = HTTPClient.new
           @@http_client.debug_dev = @@debug_dev
+          @@http_client.ssl_config.verify_mode=OpenSSL::SSL::VERIFY_NONE
           @@previous_params = {}
         end
 
@@ -48,7 +49,7 @@ module Viewpoint
 
             # Set credentials. The driver will negotiate the actual scheme
             if request_params[:username] && request_params[:password]
-              domain = request.url.match(/^(http(s?):\/\/[^\/]+\/)/)[1]
+              domain = request.url.match(/^(http(s?):\/\/[^\/]+\/)/i)[1]
               @@http_client.set_auth(domain, request_params[:username], request_params[:password])
             end
             @@http_client.ssl_config.set_trust_ca(request_params[:trust_ca_file]) if request_params[:trust_ca_file]
